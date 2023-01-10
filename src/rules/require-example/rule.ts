@@ -36,7 +36,6 @@ const testExample = (
   const example = getExample(argument.properties, context.options[0]);
 
   if (!example) {
-    console.log(context.options[0]);
     return context.report({
       messageId:
         context.options[0] === 'examples'
