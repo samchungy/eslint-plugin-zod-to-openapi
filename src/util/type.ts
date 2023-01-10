@@ -71,6 +71,7 @@ const getType = <T extends TSESTree.Node>(
       'ZodNumber',
       'ZodBoolean',
       'ZodRecord',
+      'ZodEnum',
     ].includes(unwrapType ?? name),
   };
 };
