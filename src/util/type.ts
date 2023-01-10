@@ -107,14 +107,9 @@ const getInferredComment = <T extends TSESTree.Node>(
   const comment = ts.displayPartsToString(
     aliasedSymbol.getDocumentationComment(checker),
   );
-  if (!comment) {
-    const jsDoc = aliasedSymbol.getJsDocTags(checker);
-    const tags = jsDoc.map(
-      (doc) => `@${doc.name} ${doc?.text?.[0].text ?? ''}`,
-    );
-    return tags.join(' ');
-  }
-  return comment;
+  const jsDoc = aliasedSymbol.getJsDocTags(checker);
+  const tags = jsDoc.map((doc) => `@${doc.name} ${doc?.text?.[0].text ?? ''}`);
+  return `${comment}${comment && tags.length ? '\n' : ''}${tags.join(' ')}`;
 };
 
 export { getType, getInferredComment };
